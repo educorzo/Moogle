@@ -1,0 +1,16 @@
+@import "./theme.scss";
+
+.collection {
+    padding: 0%;
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    flex-wrap: wrap;
+
+    @media screen and (min-width: $small-screen) {
+        justify-content: center;
+    }
+    .card {
+        align-self: flex-start ;
+    }
+}

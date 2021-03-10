@@ -1,0 +1,25 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    margin: 0rem 0.5rem 0.5rem 0.5rem;
+    .title {
+        margin-bottom: 0.2rem;
+        align-self: center;
+    }
+    .overflow {
+        width: fit-content;
+        max-width: 9rem;
+    
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+    .information {
+        margin-top: 0.2rem;
+        margin-bottom: 0.2rem;
+        align-self: flex-start;
+        text-align: left;
+    }
+}
+
+  
