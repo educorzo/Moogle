@@ -6,14 +6,13 @@
 </template>
 
 <script>
-import Picture from './Picture'
 import Artist from './Artist'
 import Album from './Album'
 import Song from './Song'
 
 export default {
   name: 'Card',
-  components: { Picture, Artist, Album, Song },
+  components: { Artist, Album, Song },
   props: {
     card: Object
   },
