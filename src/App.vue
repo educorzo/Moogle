@@ -1,9 +1,6 @@
 <template>
   <div id="app">
-    <div class="header">
-      <h1 class="brand">Moogle!</h1>
-      <Searcher/>
-    </div>
+    <Header/>
     <div id="main-body">
       <Results v-bind:results="searchResults" v-if="Object.keys(searchResults).length !== 0 && searchResults.error === undefined"/>
     </div>
@@ -15,7 +12,7 @@
 
 <script>
 
-import Searcher from './components/Searcher.vue'
+import Header from './components/Header.vue'
 import Results from './components/Results.vue'
 import ErrorMessage from './components/ErrorMessage.vue'
 import { mapState } from 'vuex'
@@ -24,7 +21,7 @@ import store from './Store'
 export default {
   name: 'App',
   components: {
-    Searcher,
+    Header,
     Results,
     ErrorMessage
   },
@@ -71,27 +68,6 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-
-    .header {
-      padding-left: $margin;
-      @media screen and (max-width: $small-screen) {
-        justify-content: center;
-        padding: 1% 0% 1% 0% ;
-      }
-      justify-content: flex-start;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      align-items: center;
-
-      background: $deep-yellow;
-
-      .brand {
-        margin-right: 2%;
-        color: $dark-purple;
-        font-family: fantasy;
-      }
-    }
 
     #main-body {
       @media screen and (min-width: $small-screen) {
