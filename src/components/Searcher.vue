@@ -4,8 +4,8 @@
     type="text"
     class="input border"
     placeholder="Search some music"
-    :searchTerm="searchTerm"
-    v-on="listeners"
+    v-model="searchTerm"
+    v-on:keyup.enter="submit"
     aria-labelledby="searchlabel"
   >
   <label id="searchlabel" for="input" class="invisible" >Search some music</label>
@@ -16,20 +16,17 @@
 </template>
 
 <script>
+import store from '../Store'
 export default {
   name: 'Searcher',
-  props: {
-    searchTerm: {
-      type: String,
-      default: ''
+  data () {
+    return {
+      searchTerm: ''
     }
   },
-  computed: {
-    listeners () {
-      return {
-        ...this.$listeners,
-        input: event => this.$emit('input', event.target.value)
-      }
+  methods: {
+    submit () {
+      store.commit('update', this.searchTerm)
     }
   }
 }

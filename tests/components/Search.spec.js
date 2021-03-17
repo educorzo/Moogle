@@ -1,16 +1,17 @@
 import { render, fireEvent, waitFor } from '@testing-library/vue'
 import App from '@/App.vue'
+import store from '@/Store'
 import ApiStub from './support/ApiStub'
 import SpotifyResponse from './support/SpotifyResponse'
 
 describe('Basic search', () => {
   it('returns artists, albums and tracks', async () => {
     const props = { Api: new ApiStub(SpotifyResponse) }
-    const { getByText, getByPlaceholderText, getAllByText } = render(App, { props: props })
+    const { getByText, getByPlaceholderText, getAllByText } = render(App, { props: props, store: store })
     const input = getByPlaceholderText('Search some music')
 
     await fireEvent.update(input, 'Metallica')
-    await fireEvent.keyDown(input, { key: 'Enter' })
+    await fireEvent.keyUp(input, { key: 'Enter' })
 
     await waitFor(() => {
       // Artists
@@ -42,7 +43,7 @@ describe('Basic search', () => {
       const input = getByPlaceholderText('Search some music')
 
       await fireEvent.update(input, 'Metallica')
-      await fireEvent.keyDown(input, { key: 'Enter' })
+      await fireEvent.keyUp(input, { key: 'Enter' })
 
       await waitFor(() => {
         getByText('Ups, there were an error: "Unexpected search".')
@@ -64,7 +65,7 @@ describe('Basic search', () => {
         const input = getByPlaceholderText('Search some music')
 
         await fireEvent.update(input, 'Metallica')
-        await fireEvent.keyDown(input, { key: 'Enter' })
+        await fireEvent.keyUp(input, { key: 'Enter' })
 
         await waitFor(() => {
           getByText('Your session has expired. Click')

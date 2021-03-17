@@ -2,7 +2,7 @@
   <div id="app">
     <div class="header">
       <h1 class="brand">Moogle!</h1>
-      <Searcher v-model="searchTerm" v-on:keydown.enter="search()" />
+      <Searcher/>
     </div>
     <div id="main-body">
       <Results v-bind:results="searchResults" v-if="Object.keys(searchResults).length !== 0 && searchResults.error === undefined"/>
@@ -18,6 +18,8 @@
 import Searcher from './components/Searcher.vue'
 import Results from './components/Results.vue'
 import ErrorMessage from './components/ErrorMessage.vue'
+import { mapState } from 'vuex'
+import store from './Store'
 
 export default {
   name: 'App',
@@ -33,13 +35,23 @@ export default {
   },
   data () {
     return {
-      searchTerm: '',
       searchResults: {}
     }
   },
+  computed: mapState(['searchTerm']),
+  created () {
+    this.unsubscribe = store.subscribe((mutation) => {
+      if (mutation.type === 'update') {
+        this.search()
+      }
+    })
+  },
+  beforeDestroy () {
+    this.unsubscribe()
+  },
   methods: {
     async search () {
-      this.searchResults = await this.Api.search(this.searchTerm)
+      this.searchResults = await this.Api.search(store.state.searchTerm)
     }
   }
 }
