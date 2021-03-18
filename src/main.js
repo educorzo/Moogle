@@ -14,7 +14,7 @@ if (accessToken.isEmpty()) {
   new Vue({
     store,
     render: h => h(App, {
-      props: { Api: new Api(Config.spotifyApiUrl, accessToken) }
+      props: { api: new Api(Config.spotifyApiUrl, accessToken) }
     })
   }).$mount('#app')
 }

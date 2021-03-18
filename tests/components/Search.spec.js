@@ -6,7 +6,7 @@ import SpotifyResponse from './support/SpotifyResponse'
 
 describe('Basic search', () => {
   it('returns artists, albums and tracks', async () => {
-    const props = { Api: new ApiStub(SpotifyResponse) }
+    const props = { api: new ApiStub(SpotifyResponse) }
     const { getByText, getByPlaceholderText, getAllByText } = render(App, { props: props, store: store })
     const input = getByPlaceholderText('Search some music')
 
@@ -31,7 +31,7 @@ describe('Basic search', () => {
   describe('and there is an error', function () {
     it('shows a friendly message', async () => {
       const props = {
-        Api: new ApiStub({
+        api: new ApiStub({
           error: {
             status: 400,
             message: 'Unexpected search'
@@ -53,7 +53,7 @@ describe('Basic search', () => {
     describe('because token has expired', function () {
       it('shows a message for redirection', async () => {
         const props = {
-          Api: new ApiStub({
+          api: new ApiStub({
             error: {
               status: 401,
               message: 'Access token expired'
