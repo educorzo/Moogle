@@ -7,7 +7,7 @@
     list-style-type: none;
     flex-wrap: wrap;
 
-    @media screen and (min-width: $small-screen) {
+    @media (min-width: $sm) {
         justify-content: center;
     }
     .card {

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header/>
-    <Body :api="api"/>
+    <Body :api="api" class="main-margin"/>
   </div>
 </template>
 
@@ -41,8 +41,6 @@ export default {
 
     .body {
       background: $special-white;
-      margin-left: 10%;
-      margin-right: 10%;
     }
   }
 </style>

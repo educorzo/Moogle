@@ -5,6 +5,7 @@
     </div>
     <div id="ads-body" v-if="!hasResults()">
       <ErrorMessage v-if="searchResults.error !== undefined" :error="searchResults.error"/>
+       <img src="../assets/Cow.svg" alt="search icon" />
     </div>
   </div>
 </template>
@@ -53,9 +54,13 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style scopped lang="scss">
   #ads-body {
     padding-top: 5rem;
     padding-bottom: 5rem;
+  }
+  img {
+    width: 20rem;
+    height: 20rem;
   }
 </style>
