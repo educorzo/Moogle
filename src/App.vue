@@ -26,17 +26,23 @@ export default {
 
 <style lang="scss">
   @import "./assets/styles/theme.scss";
-  $margin: 10%;
 
   #app {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-
+    align-items: stretch;
     background: $special-black;
 
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
+
+    .body {
+      background: $special-white;
+      margin-left: 10%;
+      margin-right: 10%;
+    }
   }
 </style>

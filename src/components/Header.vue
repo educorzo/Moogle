@@ -18,11 +18,6 @@ export default {
 <style scoped lang="scss">
   @import "../assets/styles/theme.scss";
   .header {
-    padding-left: 10%;
-    @media screen and (max-width: $small-screen) {
-      justify-content: center;
-      padding: 1% 0% 1% 0% ;
-    }
     justify-content: flex-start;
     display: flex;
     flex-direction: row;

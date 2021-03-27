@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class='body'>
     <div id="main-body">
       <Results v-bind:results="searchResults" v-if="hasResults()"/>
     </div>
@@ -54,24 +54,8 @@ export default {
 </script>
 
 <style lang="scss">
-  @import "../assets/styles/theme.scss";
-  $margin: 10%;
-
-  #main-body {
-    @media screen and (min-width: $small-screen) {
-      margin-left: $margin;
-      margin-right: $margin;
-    }
-
-    background: $special-white;
-  }
-
   #ads-body {
-    height: 100vh;
-    @media screen and (min-width: $small-screen) {
-      margin-left: $margin;
-      margin-right: $margin;
-    }
-    background: $special-white;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
   }
 </style>

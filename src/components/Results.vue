@@ -34,10 +34,7 @@ export default {
   .results {
     margin-left: 5%;
     margin-right: 5%;
-  }
-
-  .no-results {
-    height: 100%;
-    background: $special-white;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
   }
 </style>
