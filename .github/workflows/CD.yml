@@ -23,7 +23,7 @@ jobs:
     - run: npm run test:unit
     - run: |
         rm -rf docs
-        npm run production
+        npm run build
         mv dist docs
         git config --global user.email "$env:EMAIL"
         git config --global user.name "$env:USER"
