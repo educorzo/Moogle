@@ -5,7 +5,7 @@
     </div>
     <div id="ads-body" v-if="!hasResults()">
       <ErrorMessage v-if="searchResults.error !== undefined" :error="searchResults.error"/>
-       <img src="../assets/Cow.svg" alt="search icon" />
+       <img src="../assets/images/Cow.svg" alt="search icon" />
     </div>
   </div>
 </template>

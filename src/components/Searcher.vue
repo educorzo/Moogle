@@ -10,7 +10,7 @@
   >
   <label id="searchlabel" for="input" class="invisible" >Search some music</label>
   <div class='icon-frame border'>
-    <img src="../assets/Search.svg" alt="search icon" />
+    <img src="../assets/images/Search.svg" alt="search icon" />
   </div>
 </div>
 </template>
