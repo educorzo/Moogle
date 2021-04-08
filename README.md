@@ -33,6 +33,6 @@ $ npm run lint
 
 ## Build
 ```sh
-$ npm run lint
+$ npm run build
 ```
 The build is intended for GitHub pages. When building the app, the generated dist folder is prepared for working properly in github pages (assets folders are not allowed in Github pages yet). When the PR is approved against Master branch, Github actions will test and deploy the website automatically.
