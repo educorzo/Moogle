@@ -1,4 +1,5 @@
 module.exports = {
+  publicPath: '/Moogle',
   chainWebpack: config => {
     config.module
       .rule('svg')
