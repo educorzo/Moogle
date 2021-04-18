@@ -1,0 +1,4 @@
+{
+    "spotifyApiUrl": "https://api.spotify.com/v1/",
+    "loginSpotifyUri": "https://accounts.spotify.com/authorize?response_type=token&redirect_uri=http://localhost:8080/Moogle&client_id=45f97bc4f0934e579f108cb64a81d60f"
+}

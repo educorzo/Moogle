@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Config from '../config.js'
+import * as configuration from '../config.json'
 import App from './App.vue'
 import Api from './core/Api'
 import AccessToken from './core/AccessToken.js'
@@ -9,12 +9,12 @@ Vue.config.productionTip = false
 const accessToken = new AccessToken(window.location)
 
 if (accessToken.isEmpty()) {
-  window.location.href = Config.loggingSpotifyUri
+  window.location.href = configuration.loginSpotifyUri
 } else {
   new Vue({
     store,
     render: h => h(App, {
-      props: { api: new Api(Config.spotifyApiUrl, accessToken) }
+      props: { api: new Api(configuration.spotifyApiUrl, accessToken) }
     })
   }).$mount('#app')
 }
