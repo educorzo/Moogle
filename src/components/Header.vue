@@ -22,8 +22,9 @@ export default {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: center;
 
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
     @media (max-width: $md) {
         padding-top: 2%;
         padding-bottom: 2%;
@@ -35,8 +36,15 @@ export default {
     background: $deep-yellow;
 
     .brand {
+      margin-top: 0;
+      margin-bottom: 0;
       margin-right: 2%;
-      color: $dark-purple;
+      color: $logo-color;
+
+      @media (max-width: $md) {
+        margin-bottom: 0.2rem;
+        justify-content: flex-start;
+      }
       font-family: fantasy;
     }
   }
