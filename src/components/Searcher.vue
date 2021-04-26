@@ -1,18 +1,20 @@
 <template>
-<div id='searcher'>
-  <input
-    type="text"
-    class="input border"
-    placeholder="Search some music"
-    v-model="searchTerm"
-    v-on:keyup.enter="submit"
-    aria-labelledby="searchlabel"
-  >
-  <label id="searchlabel" for="input" class="invisible" >Search some music</label>
-  <div class='icon-frame border'>
-    <img src="../assets/images/Search.svg" alt="search icon" />
+  <div id='searcher'>
+    <input
+      type="text"
+      class="input border"
+      placeholder="Search some music"
+      v-model="searchTerm"
+      v-on:keyup.enter="submit"
+      aria-labelledby="searchlabel"
+    >
+    <label id="searchlabel" for="input" class="invisible" >Search some music</label>
+    <a v-on:click="submit">
+      <div class='icon-frame border'>
+        <img src="../assets/images/Search.svg" alt="search icon" />
+      </div>
+    </a>
   </div>
-</div>
 </template>
 
 <script>
