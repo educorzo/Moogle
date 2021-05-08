@@ -6,8 +6,8 @@ import SpotifyResponse from './support/SpotifyResponse'
 
 describe('Basic search', () => {
   it('returns artists, albums and tracks', async () => {
-    const props = { api: new ApiStub(SpotifyResponse) }
-    const { getByText, getByPlaceholderText, getAllByText } = render(App, { props: props, store: store })
+    const api = { api: new ApiStub(SpotifyResponse) }
+    const { getByText, getByPlaceholderText, getAllByText } = render(App, { provide: api, store: store })
     const input = getByPlaceholderText('Search some music')
 
     await fireEvent.update(input, 'Metallica')
@@ -30,7 +30,7 @@ describe('Basic search', () => {
 
   describe('and there is an error', function () {
     it('shows a friendly message', async () => {
-      const props = {
+      const api = {
         api: new ApiStub({
           error: {
             status: 400,
@@ -39,7 +39,7 @@ describe('Basic search', () => {
         })
       }
 
-      const { getByText, getByPlaceholderText } = render(App, { props: props })
+      const { getByText, getByPlaceholderText } = render(App, { provide: api })
       const input = getByPlaceholderText('Search some music')
 
       await fireEvent.update(input, 'Metallica')
@@ -52,7 +52,7 @@ describe('Basic search', () => {
 
     describe('because token has expired', function () {
       it('shows a message for redirection', async () => {
-        const props = {
+        const api = {
           api: new ApiStub({
             error: {
               status: 401,
@@ -61,7 +61,7 @@ describe('Basic search', () => {
           })
         }
 
-        const { getByText, getByPlaceholderText } = render(App, { props: props })
+        const { getByText, getByPlaceholderText } = render(App, { provide: api })
         const input = getByPlaceholderText('Search some music')
 
         await fireEvent.update(input, 'Metallica')

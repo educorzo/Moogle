@@ -1,10 +1,10 @@
 <template>
   <div class='body'>
     <div id="main-body">
-      <Results v-bind:results="searchResults" v-if="hasResults()"/>
+      <Results v-bind:results="results" v-if="hasResults()"/>
     </div>
     <div id="ads-body" v-if="!hasResults()">
-      <ErrorMessage v-if="searchResults.error !== undefined" :error="searchResults.error"/>
+      <ErrorMessage v-if="results.error !== undefined" :error="results.error"/>
        <img src="../assets/images/Cow.svg" alt="search icon" />
     </div>
   </div>
@@ -22,21 +22,16 @@ export default {
     Results,
     ErrorMessage
   },
-  props: {
-    api: {
-      type: Object
-    }
-  },
   data () {
     return {
-      searchResults: {}
+      results: {}
     }
   },
-  computed: mapState(['searchTerm']),
+  computed: mapState(['searchResults']),
   created () {
     this.unsubscribe = store.subscribe((mutation) => {
       if (mutation.type === 'update') {
-        this.search()
+        this.results = store.state.searchResults
       }
     })
   },
@@ -44,11 +39,8 @@ export default {
     this.unsubscribe()
   },
   methods: {
-    async search () {
-      this.searchResults = await this.api.search(store.state.searchTerm)
-    },
     hasResults () {
-      return Object.keys(this.searchResults).length !== 0 && this.searchResults.error === undefined
+      return Object.keys(this.results).length !== 0 && this.results.error === undefined
     }
   }
 }

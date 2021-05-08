@@ -5,11 +5,11 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    searchTerm: ''
+    searchResults: {}
   },
   mutations: {
-    update (state, searchTerm) {
-      state.searchTerm = searchTerm
+    update (state, searchResults) {
+      state.searchResults = searchResults
     }
   }
 })
