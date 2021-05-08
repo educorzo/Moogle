@@ -21,14 +21,22 @@
 import store from '../Store'
 export default {
   name: 'Searcher',
+  inject: ['api'],
   data () {
     return {
       searchTerm: ''
     }
   },
   methods: {
-    submit () {
-      store.commit('update', this.searchTerm)
+    async submit () {
+      const searchResult = await this.search()
+      this.shareResults(searchResult)
+    },
+    shareResults (searchResult) {
+      store.commit('update', searchResult)
+    },
+    async search () {
+      return this.api.search(this.searchTerm)
     }
   }
 }

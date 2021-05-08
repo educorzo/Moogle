@@ -17,7 +17,9 @@ export default class Api {
       headers: {
         Authorization: 'Bearer ' + token
       }
-    }).then(response => response.json())
+    }).then(function (response) {
+      return response.json()
+    })
       .catch(function (error) {
         return { error: { message: error.message } }
       })
