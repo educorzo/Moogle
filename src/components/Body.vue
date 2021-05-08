@@ -18,14 +18,10 @@ import ErrorMessage from './ErrorMessage.vue'
 
 export default {
   name: 'Body',
+  inject: ['api'],
   components: {
     Results,
     ErrorMessage
-  },
-  props: {
-    api: {
-      type: Object
-    }
   },
   data () {
     return {
