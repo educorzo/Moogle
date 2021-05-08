@@ -10,7 +10,7 @@ describe('Basic search', () => {
     { fixture: 'spotifyResponse.json' }
     )
 
-    cy.visit('http://localhost:8080/#access_token=ABC')
+    cy.visit('http://localhost:8080/Moogle/#access_token=ABC')
     cy.get('input').type('Metallica{enter}')
 
     cy.get('.card').should('have.length', 3)

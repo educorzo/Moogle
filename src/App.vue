@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header/>
-    <Body :api="api" class="main-margin"/>
+    <Body class="main-margin"/>
   </div>
 </template>
 

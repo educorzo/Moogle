@@ -2,9 +2,9 @@ import store from '@/Store'
 
 describe('Store', () => {
   describe('when commiting an update', () => {
-    it('update searchterm state', () => {
-      store.commit('update', 'Metallica')
-      expect(store.state.searchTerm).toBe('Metallica')
+    it('update of search results state', () => {
+      store.commit('update', { searchResults: 'something' })
+      expect(store.state.searchResults).toEqual({ searchResults: 'something' })
     })
   })
 })
