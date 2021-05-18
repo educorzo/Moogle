@@ -5,11 +5,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    searchResults: {}
+    searchResults: {},
+    autoCompleteResults: {}
   },
   mutations: {
     update (state, searchResults) {
       state.searchResults = searchResults
+    },
+    autoComplete (state, autoCompleteResults) {
+      state.autoCompleteResults = autoCompleteResults
     }
   }
 })

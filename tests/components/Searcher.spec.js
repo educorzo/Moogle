@@ -20,4 +20,46 @@ describe('Searcher', () => {
       })
     })
   })
+
+  describe('On change', () => {
+    it('returns autocomplete results', async () => {
+      const api = { api: new ApiStub(SpotifyResponse) }
+      const { getByPlaceholderText } = render(Searcher, { provide: api, store: store })
+      const input = getByPlaceholderText('Search some music')
+
+      await fireEvent.update(input, 'Metallica')
+
+      await waitFor(() => {
+        expect(store.state.autoCompleteResults).toBe(SpotifyResponse)
+      })
+    })
+
+    it('shows autocomplete', async () => {
+      const api = { api: new ApiStub(SpotifyResponse) }
+      const { getByPlaceholderText, getAllByText } = render(Searcher, { provide: api, store: store })
+      const input = getByPlaceholderText('Search some music')
+
+      await fireEvent.update(input, 'Metallica')
+
+      await waitFor(() => {
+        getAllByText('Metallica')
+        getAllByText('SaD - Symphony and Metallica')
+      })
+    })
+    describe('and there is not results', () => {
+      it('does not show anything', async () => {
+        const api = { api: new ApiStub({}) }
+        const { getByPlaceholderText, queryAllByText } = render(Searcher, { provide: api, store: store })
+        const input = getByPlaceholderText('Search some music')
+
+        await fireEvent.update(input, 'Metallica')
+
+        await waitFor(() => {
+          const artists = queryAllByText('SaD - Symphony and Metallica')
+
+          expect(artists).toHaveLength(0)
+        })
+      })
+    })
+  })
 })
