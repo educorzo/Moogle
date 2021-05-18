@@ -1,25 +1,32 @@
 <template>
-  <div id='searcher'>
-    <input
-      type="text"
-      class="input border"
-      placeholder="Search some music"
-      v-model="searchTerm"
-      v-on:keyup.enter="submit"
-      aria-labelledby="searchlabel"
-    >
-    <label id="searchlabel" for="input" class="invisible" >Search some music</label>
-    <a v-on:click="submit">
-      <div class='icon-frame border'>
-        <img src="../assets/images/Search.svg" alt="search icon" />
+  <div class="searcher-flex-item">
+    <div class="searcher-container">
+      <div id='searcher'>
+        <input
+          type="text"
+          class="input "
+          placeholder="Search some music"
+          v-model="searchTerm"
+          v-on:keyup.enter="submit"
+          aria-labelledby="searchlabel"
+        >
+        <label id="searchlabel" for="input" class="invisible" >Search some music</label>
+        <a v-on:click="submit">
+          <div class='icon-frame '>
+            <img src="../assets/images/Search.svg" alt="search icon" />
+          </div>
+        </a>
       </div>
-    </a>
+      <autocomplete/>
+    </div>
   </div>
 </template>
 
 <script>
 import store from '../Store'
+import Autocomplete from './Autocomplete.vue'
 export default {
+  components: { Autocomplete },
   name: 'Searcher',
   inject: ['api'],
   data () {
@@ -27,15 +34,37 @@ export default {
       searchTerm: ''
     }
   },
+  watch: {
+    searchTerm: function () {
+      this.autocomplete()
+    }
+  },
   methods: {
     async submit () {
       const searchResult = await this.search()
+
       this.shareResults(searchResult)
     },
+
+    async autocomplete () {
+      const searchResult = await this.quickSearch()
+
+      this.autocompleteResults(searchResult)
+    },
+
     shareResults (searchResult) {
       store.commit('update', searchResult)
     },
+
+    autocompleteResults (autoCompleteResults) {
+      store.commit('autoComplete', autoCompleteResults)
+    },
+
     async search () {
+      return this.api.search(this.searchTerm)
+    },
+
+    async quickSearch () {
       return this.api.search(this.searchTerm)
     }
   }
@@ -47,6 +76,17 @@ export default {
   @import "../assets/styles/accessibilityTools.scss";
   $height: 1.5rem;
   $padding: 0.3rem;
+
+  .searcher-flex-item {
+    min-width: 20rem;
+    min-height: 1.9rem;
+  }
+  .searcher-container {
+    position: absolute;
+    background-color: white;
+    border: 0.1rem solid $special-black;
+    border-radius: 0.5rem;
+  }
 
   #searcher {
     display: flex;
@@ -61,10 +101,8 @@ export default {
     width: 17rem;
     height: $height;
     padding: $padding;
-    border-right: none;
-    border-top-right-radius: 0rem;
-    border-bottom-right-radius: 0rem;
-
+    border: 0;
+    border-radius: 0.5rem;
     font-size: 1rem;
 
     &:focus {
@@ -76,10 +114,8 @@ export default {
     width: 1.5rem;
     height: $height;
     padding: $padding;
-    border-left: none;
-    border-top-left-radius: 0rem;
-    border-bottom-left-radius: 0rem;
-
+    border:0;
+    border-radius: 0.5rem;
     background: white;
   }
 

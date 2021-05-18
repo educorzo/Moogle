@@ -16,7 +16,7 @@ describe('Basic search', () => {
     await waitFor(() => {
       // Artists
       getAllByText('Metallica')
-      getByText('SaD - Symphony and Metallica')
+      getAllByText('SaD - Symphony and Metallica')
 
       // Albums
       getByText('Garage Inc.')

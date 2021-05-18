@@ -29,9 +29,6 @@ export default {
 
   #app {
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
     background: $special-black;
 
     font-family: Avenir, Helvetica, Arial, sans-serif;
