@@ -20,7 +20,20 @@ describe('Searcher', () => {
       })
     })
   })
+  describe('On enter', () => {
+    it('removes autocomplete', async () => {
+      const api = { api: new ApiStub(SpotifyResponse) }
+      const { getByPlaceholderText } = render(Searcher, { provide: api, store: store })
+      const input = getByPlaceholderText('Search some music')
 
+      await fireEvent.update(input, 'Metallica')
+      await fireEvent.keyUp(input, { key: 'Enter' })
+
+      await waitFor(() => {
+        expect(store.state.autoCompleteResults).toStrictEqual({})
+      })
+    })
+  })
   describe('On change', () => {
     it('returns autocomplete results', async () => {
       const api = { api: new ApiStub(SpotifyResponse) }
@@ -46,6 +59,7 @@ describe('Searcher', () => {
         getAllByText('SaD - Symphony and Metallica')
       })
     })
+
     describe('and there is not results', () => {
       it('does not show anything', async () => {
         const api = { api: new ApiStub({}) }
@@ -59,6 +73,23 @@ describe('Searcher', () => {
 
           expect(artists).toHaveLength(0)
         })
+      })
+    })
+  })
+
+  describe('On blur', () => {
+    it('removes autocomplete', async () => {
+      const api = { api: new ApiStub(SpotifyResponse) }
+      const { getByPlaceholderText, queryAllByText } = render(Searcher, { provide: api, store: store })
+      const input = getByPlaceholderText('Search some music')
+
+      await fireEvent.update(input, 'Metallica')
+      await fireEvent.blur(input)
+
+      await waitFor(() => {
+        const artists = queryAllByText('SaD - Symphony and Metallica')
+
+        expect(artists).toHaveLength(0)
       })
     })
   })
