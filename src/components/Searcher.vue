@@ -8,11 +8,12 @@
           placeholder="Search some music"
           v-model="searchTerm"
           v-on:keyup.enter="submit"
+          v-on:blur="deleteAutocomplete"
           aria-labelledby="searchlabel"
         >
         <label id="searchlabel" for="input" class="invisible" >Search some music</label>
         <a v-on:click="submit">
-          <div class='icon-frame '>
+          <div class='icon-frame'>
             <img src="../assets/images/Search.svg" alt="search icon" />
           </div>
         </a>
@@ -44,6 +45,7 @@ export default {
       const searchResult = await this.search()
 
       this.shareResults(searchResult)
+      this.deleteAutocomplete()
     },
 
     async autocomplete () {
@@ -58,6 +60,10 @@ export default {
 
     autocompleteResults (autoCompleteResults) {
       store.commit('autoComplete', autoCompleteResults)
+    },
+
+    deleteAutocomplete () {
+      store.commit('autoComplete', {})
     },
 
     async search () {
