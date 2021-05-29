@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import * as configuration from '../config.json'
 import App from './App.vue'
-import Api from './core/Api'
+import Api from './api/Api'
 import AccessToken from './core/AccessToken.js'
 import store from './Store'
 import DependencyContainer from './DependencyContainer'
