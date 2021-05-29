@@ -1,4 +1,4 @@
-import Api from '@/core/Api.js'
+import Api from '@/api/Api.js'
 import AccessToken from '@/core/AccessToken'
 
 describe('Api', () => {
@@ -6,7 +6,7 @@ describe('Api', () => {
   const accessToken = new AccessToken({ hash: '#access_token=ABC&expires_in=200' })
 
   describe('when searching', () => {
-    it('respond a result', async () => {
+    it('return a result', async () => {
       global.fetch = jest.fn(() =>
         Promise.resolve({
           json: () => Promise.resolve({ albums: 'Place In The Sun' })
@@ -22,7 +22,7 @@ describe('Api', () => {
     })
 
     describe('and there is an error in the http', () => {
-      it('respond with a error object', async () => {
+      it('return an error object', async () => {
         global.fetch = jest.fn(() => Promise.reject(new Error('Internet is down')))
 
         const api = new Api(spotifyURL, accessToken)
