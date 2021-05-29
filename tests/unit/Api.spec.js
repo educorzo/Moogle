@@ -50,4 +50,20 @@ describe('Api', () => {
       })
     })
   })
+
+  describe('when autocomplete searching', () => {
+    it('ask for three artists', async () => {
+      global.fetch = jest.fn(() =>
+        Promise.resolve({
+          json: () => Promise.resolve({ artist: 'Tania Bowra' })
+        })
+      )
+
+      const api = new Api(spotifyURL, accessToken)
+      const result = await api.autoCompleteSearch('tania bowra')
+
+      expect(global.fetch.mock.calls[0][0]).toBe('www.spotify.com/webApi/search?q=tania%20bowra&type=artist&limit=3')
+      expect(result.artist).toBeDefined()
+    })
+  })
 })

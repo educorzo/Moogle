@@ -71,7 +71,7 @@ export default {
     },
 
     async quickSearch () {
-      return this.api.search(this.searchTerm)
+      return this.api.autoCompleteSearch(this.searchTerm)
     }
   }
 }

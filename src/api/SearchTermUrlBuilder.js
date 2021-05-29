@@ -7,6 +7,10 @@ export function onlyArtistSearch (url, searchTerm) {
   return searchUrl(url, searchTerm, ['artist'])
 }
 
+export function withLimit (url, limit) {
+  return url + '&limit=' + limit
+}
+
 function searchUrl (url, searchTerm, filters) {
   const encodedSearchTerm = encodeURIComponent(searchTerm)
   let completeUrl = url + 'search?q=' + encodedSearchTerm

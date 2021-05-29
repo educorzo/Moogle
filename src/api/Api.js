@@ -1,6 +1,6 @@
 import clean from './TermCleaner'
 import fetchResources from './Fetcher'
-import { completeSearch, onlyArtistSearch } from './SearchTermUrlBuilder'
+import { completeSearch, onlyArtistSearch, withLimit } from './SearchTermUrlBuilder'
 
 export default class Api {
   constructor (url, accessToken) {
@@ -25,7 +25,7 @@ export default class Api {
       return {}
     }
 
-    const url = onlyArtistSearch(this.url, keywords)
+    const url = withLimit(onlyArtistSearch(this.url, keywords), 3)
 
     return this._get(url)
   }
