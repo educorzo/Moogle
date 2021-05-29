@@ -6,4 +6,8 @@ export default class ApiStub {
   async search () {
     return Promise.resolve(this.response)
   }
+
+  async autoCompleteSearch () {
+    return Promise.resolve(this.response)
+  }
 }
