@@ -5,7 +5,7 @@
     </div>
     <div id="ads-body" v-if="!hasResults()">
       <ErrorMessage v-if="results.error !== undefined" :error="results.error"/>
-      <img src="../assets/images/Cow.svg" alt="search icon" />
+      <img src="../assets/images/Cow.svg" alt="Moogle logo" />
     </div>
   </div>
 </template>
@@ -47,9 +47,12 @@ export default {
 </script>
 
 <style scopped lang="scss">
+  .body {
+    border-radius: 0.5rem;
+  }
   #ads-body {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
+    margin-top: 5%;
+    padding-top: 10rem;
   }
   img {
     width: 20rem;

@@ -22,6 +22,11 @@ export default {
 <style scoped lang="scss">
   @import "../assets/styles/theme.scss";
   @import "../assets/styles/collection.scss";
+
+  .collection {
+    border-radius: 0.5rem;
+  }
+
   .albums {
     background: $yellow;
   }
