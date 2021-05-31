@@ -1,6 +1,8 @@
 <template>
   <div>
-    <Picture :images="info.images" :name="info.name + ' members photo'" />
+    <a :href="info.external_urls.spotify">
+      <Picture :images="info.images" :name="info.name + ' members photo'"/>
+    </a>
     <h5 class="information">Popularity: {{ info.popularity }}</h5>
   </div>
 </template>
