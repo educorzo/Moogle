@@ -1,5 +1,5 @@
 # Moogle
-A Spotify albums, tracks and artist searcher.
+A Spotify albums, tracks and artists searcher.
 Check it [here](https://educorzo.github.io/Moogle/).
 
 ## Introduction
